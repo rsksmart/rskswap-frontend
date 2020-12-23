@@ -35,6 +35,7 @@ import { Field } from '../../state/burn/actions'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
+import { UserRejectedRequestError } from '@web3-react/walletconnect-connector'
 
 export default function RemoveLiquidity({ match: { params } }: RouteComponentProps<{ tokens: string }>) {
   useDefaultsFromURLMatchParams(params)
@@ -137,7 +138,7 @@ export default function RemoveLiquidity({ match: { params } }: RouteComponentPro
       })
       .catch(error => {
         // for all errors other than 4001 (EIP-1193 user rejected request), fall back to manual approve
-        if (error?.code !== 4001) {
+        if (error?.code !== 4001 || !(error instanceof UserRejectedRequestError)) {
           approveCallback()
         }
       })
