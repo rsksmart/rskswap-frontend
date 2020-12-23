@@ -23,9 +23,8 @@ export const injected = new InjectedConnector({
   supportedChainIds: [30, 31] //supportedChainIds: [1, 3, 4, 5, 42]
 })
 
-// mainnet only
 export const walletconnect = new WalletConnectConnector({
-  rpc: { 30: NETWORK_URL },
+  rpc: { 30: 'https://public-node.rsk.co', 31: 'https://public-node.testnet.rsk.co' },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
@@ -34,7 +33,7 @@ export const walletconnect = new WalletConnectConnector({
 // mainnet only
 export const fortmatic = new FortmaticConnector({
   apiKey: FORMATIC_KEY ?? '',
-  chainId: 1
+  chainId: 30
 })
 
 // mainnet only
@@ -46,7 +45,7 @@ export const portis = new PortisConnector({
 // mainnet only
 export const walletlink = new WalletLinkConnector({
   url: NETWORK_URL,
-  appName: 'Uniswap',
+  appName: 'RskSwap',
   appLogoUrl:
     'https://mpng.pngfly.com/20181202/bex/kisspng-emoji-domain-unicorn-pin-badges-sticker-unicorn-tumblr-emoji-unicorn-iphoneemoji-5c046729264a77.5671679315437924251569.jpg'
 })
