@@ -94,9 +94,9 @@ export const SUPPORTED_WALLETS =
           ...{
             WALLET_CONNECT: {
               connector: walletconnect,
-              name: 'WalletConnect',
-              iconName: 'walletConnectIcon.svg',
-              description: 'Connect to Trust Wallet, Rainbow Wallet and more...',
+              name: 'WalletConnect / DefiantApp',
+              iconName: 'walletConnectDefiant.png',
+              description: 'Connect to DefiantApp, rWallet and more...',
               href: null,
               color: '#4196FC',
               mobile: true
@@ -111,7 +111,7 @@ export const SUPPORTED_WALLETS =
             connector: walletconnect,
             name: 'WalletConnect',
             iconName: 'walletConnectIcon.svg',
-            description: 'Connect to Trust Wallet, Rainbow Wallet and more...',
+            description: 'Connect to DefiantApp, rWallet and more...',
             href: null,
             color: '#4196FC',
             mobile: true

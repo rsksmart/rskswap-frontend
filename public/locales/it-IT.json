@@ -2,7 +2,7 @@
   "noWallet": "Wallet RSK non trovato",
   "wrongNetwork": "Sei connesso alla rete sbagliata",
   "switchNetwork": "Perfavore connettiti su {{ correctNetwork }}",
-  "installWeb3MobileBrowser": "Perfavore visita il sito da un browser abilitato web3 o da un app mobile come Trust Wallet o Coinbase Wallet.",
+  "installWeb3MobileBrowser": "Perfavore visita il sito da un browser abilitato web3 o da un app mobile come DefiantApp o rWallet.",
   "installMetamask": "Perfavore ritorna dopo aver installato Metamask/Nifty Wallet su Chrome o Brave.",
   "disconnected": "Disconnesso",
   "swap": "Scambia",

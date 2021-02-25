@@ -2,7 +2,7 @@
   "noWallet": "Niciun portofel RSK găsit",
   "wrongNetwork": "Nu ești conectat la rețeaua corectă",
   "switchNetwork": "Conectează-te te rog la {{ correctNetwork }}",
-  "installWeb3MobileBrowser": "Incearcă să vizitezi această pagina folosind un browser precum Trust Wallet sau Coinbase Wallet.",
+  "installWeb3MobileBrowser": "Incearcă să vizitezi această pagina folosind un browser precum DefiantApp sau rWallet.",
   "installMetamask": "Vizitează această pagină din nou după ce instalezi MetaMask/Nifty Wallet în Chrome sau Brave",
   "disconnected": "Deconectat",
   "swap": "Schimba",

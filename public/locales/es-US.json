@@ -2,7 +2,7 @@
 	"noWallet": "No se ha encontrado billetera de RSK",
 	"wrongNetwork": "Se encuentra en la red equivocada",
 	"switchNetwork": "Por favor cambie a {{ correctNetwork }}",
-	"installWeb3MobileBrowser": "Por favor ingrese desde un navegador móvil con web3 habilitado como Trust Wallet o Coinbase Wallet.",
+	"installWeb3MobileBrowser": "Por favor ingrese desde un navegador móvil con web3 habilitado como DefiantApp o rWallet.",
 	"installMetamask": "Por favor visítenos nuevamente luego de instalar Metamask/Nifty Wallet en Chrome o Brave.",
 	"disconnected": "Desconectado",
 	"swap": "Intercambiar",

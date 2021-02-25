@@ -24,16 +24,16 @@ export const injected = new InjectedConnector({
 })
 
 export const walletconnect = new WalletConnectConnector({
-  rpc: { 30: 'https://public-node.rsk.co', 31: 'https://public-node.testnet.rsk.co' },
+  rpc: { 30: 'https://public-node.rsk.co' }, //, 31: 'https://public-node.testnet.rsk.co'
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: POLLING_INTERVAL
 })
 
-// mainnet only
+// mainnet only, doesn't support RSK
 export const fortmatic = new FortmaticConnector({
   apiKey: FORMATIC_KEY ?? '',
-  chainId: 30
+  chainId: 1
 })
 
 // mainnet only

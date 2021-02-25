@@ -2,7 +2,7 @@
   "noWallet": "未偵測到以太坊錢包",
   "wrongNetwork": "你位在錯誤的網路",
   "switchNetwork": "請切換到 {{ correctNetwork }}",
-  "installWeb3MobileBrowser": "請安裝含有 web3 瀏覽器的手機錢包，如 Trust Wallet 或 Coinbase Wallet。",
+  "installWeb3MobileBrowser": "請安裝含有 web3 瀏覽器的手機錢包，如 DefiantApp 或 rWallet。",
   "installMetamask": "請使用 Chrome 或 Brave 瀏覽器安裝 Metamask/Nifty Wallet。",
   "disconnected": "未連接",
   "swap": "兌換",
