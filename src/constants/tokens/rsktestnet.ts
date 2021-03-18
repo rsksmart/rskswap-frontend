@@ -13,5 +13,6 @@ export default [
   new Token(ChainId.RSK_TESTNET, '0x823b3d62Cb5a4ED97f26eD9888ea721b569Afe27', 18, 'rKovZRX', '0x Protocol'),
   new Token(ChainId.RSK_TESTNET, '0x8bBbd80981FE76d44854D8DF305e8985c19f0e78', 18, 'rKovLINK', 'ChainLink Token'),
   new Token(ChainId.RSK_TESTNET, '0xED3334adB07a3a5947D268e5A8c67B84F5464963', 18, 'rKovUSDC', 'USD Coin'),
-  new Token(ChainId.RSK_TESTNET, '0x4CFE225ce54C6609a525768b13F7d87432358C57', 18, 'rKovUSDT', 'Tether USD')
+  new Token(ChainId.RSK_TESTNET, '0x4CFE225ce54C6609a525768b13F7d87432358C57', 18, 'rKovUSDT', 'Tether USD'),
+  new Token(ChainId.RSK_TESTNET, '0xe95afdfec031f7b9cd942eb7e60f053fb605dfcd', 18, 'rKovBUND', 'Bundles Finance')
 ]
