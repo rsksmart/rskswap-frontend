@@ -12,5 +12,6 @@ export default [
   new Token(ChainId.RSK_MAINNET, '0x14AdaE34beF7ca957Ce2dDe5ADD97ea050123827', 18, 'rLINK', 'ChainLink Token'),
   new Token(ChainId.RSK_MAINNET, '0x1BDA44fda023f2aF8280A16FD1b01d1a493BA6C4', 18, 'rUSDC', 'USD Coin'),
   new Token(ChainId.RSK_MAINNET, '0xef213441A85dF4d7ACbDaE0Cf78004e1E486bB96', 18, 'rUSDT', 'Tether USD'),
-  new Token(ChainId.RSK_MAINNET, '0x9C3a5F8d686fADE293c0CE989A62a34408C4E307', 18, 'rRFOX', 'RedFOX Labs')
+  new Token(ChainId.RSK_MAINNET, '0x9C3a5F8d686fADE293c0CE989A62a34408C4E307', 18, 'rRFOX', 'RedFOX Labs'),
+  new Token(ChainId.RSK_MAINNET, '0x4991516df6053121121274397a8c1dad608bc95b', 18, 'rBUND', 'Bundles Finance')
 ]
