@@ -16,5 +16,12 @@ export default [
   new Token(ChainId.RSK_MAINNET, '0x4991516df6053121121274397a8c1dad608bc95b', 18, 'rBUND', 'Bundles Finance'),
   new Token(ChainId.RSK_MAINNET, '0xff9ea341d9ea91cb7c54342354377f5104fd403f', 18, 'rAMLT', 'AMLT Coinfirm'),
   new Token(ChainId.RSK_MAINNET, '0xefc78fc7d48b64958315949279ba181c2114abbd', 18, 'SOV', 'Sovryn Token'),
-  new Token(ChainId.RSK_MAINNET, '0x9ac7fe28967b30e3a4e6e03286d715b42b453d10', 18, 'MOC', 'MoC Token')
+  new Token(ChainId.RSK_MAINNET, '0x9ac7fe28967b30e3a4e6e03286d715b42b453d10', 18, 'MOC', 'MoC Token'),
+  new Token(
+    ChainId.RSK_MAINNET,
+    '0x70566d8541beabe984c8babf8a816ed908514ba8',
+    18,
+    'rUBI',
+    'Universal Basic Income Token'
+  )
 ]
