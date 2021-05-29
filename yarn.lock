@@ -2371,10 +2371,10 @@
     redux-thunk "^2.3.0"
     reselect "^4.0.0"
 
-"@rsksmart/rsk-contract-metadata@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@rsksmart/rsk-contract-metadata/-/rsk-contract-metadata-1.0.10.tgz#024959aacace9dbc6077325565840e1e27881d37"
-  integrity sha512-4AEchE5baTAgqM+aiS7+SdsaedKrWMVBjQF9HwnVz0bacHOqnYpUxD4KxWDhEVPOQAM3pmWrR7jeFLfKu2S5bg==
+"@rsksmart/rsk-contract-metadata@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@rsksmart/rsk-contract-metadata/-/rsk-contract-metadata-1.0.12.tgz#a95592544e9f4eb0abc82807cb410b41656185b3"
+  integrity sha512-+0IO2qEiv3a+GYpVIyD2nVC2lX/A/jXLbFZsWJaIGEg3xMMwx7Yer3+iJf/gc+Cc13NSzQjAeWQmBFWP2ZExDw==
 
 "@rsksmart/rsk-testnet-contract-metadata@^1.0.8":
   version "1.0.8"
@@ -5062,9 +5062,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001039, caniuse-lite@^1.0.30001043:
-  version "1.0.30001054"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001054.tgz#7e82fc42d927980b0ce1426c4813df12381e1a75"
-  integrity sha512-jiKlTI6Ur8Kjfj8z0muGrV6FscpRvefcQVPSuMuXnvRCfExU7zlVLNjmOz1TnurWgUrAY7MMmjyy+uTgIl1XHw==
+  version "1.0.30001232"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001232.tgz"
+  integrity sha512-e4Gyp7P8vqC2qV2iHA+cJNf/yqUKOShXQOJHQt81OHxlIZl/j/j3soEA0adAQi8CPUQgvOdDENyQ5kd6a6mNSg==
 
 capture-exit@^2.0.0:
   version "2.0.0"
