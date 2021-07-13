@@ -93,5 +93,6 @@ export default [
     'IDRCB',
     'Rupia Indonesia PagoLinea'
   ),
-  new Token(ChainId.RSK_MAINNET, '0xD8132625b10b3962239F6842981Dce02F1A163D2', 18, 'UYUCB', 'Pesos Uruguayos PagoLinea')
+  new Token(ChainId.RSK_MAINNET, '0xD8132625b10b3962239F6842981Dce02F1A163D2', 18, 'UYUCB', 'Pesos Uruguayos PagoLinea'),
+  new Token(ChainId.RSK_MAINNET, '0xe355c280131dfaf18bf1c3648aee3c396db6b5fd', 4, 'BRZ', 'Brazilian Digital Token')
 ]

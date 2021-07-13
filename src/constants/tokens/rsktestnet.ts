@@ -22,5 +22,6 @@ export default [
     18,
     'rUBI',
     'Universal Basic Income Token'
-  )
+  ),
+  new Token(ChainId.RSK_TESTNET, '0x06d164e8d6829e1da028a4f745d330eb764dd3ac', 4, 'BRZ', 'Brazilian Digital Token')
 ]
