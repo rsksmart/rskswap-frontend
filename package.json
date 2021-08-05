@@ -108,6 +108,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@rsksmart/rlogin": "^1.1.0",
     "@rsksmart/rsk-contract-metadata": "^1.0.13",
     "@rsksmart/rsk-testnet-contract-metadata": "^1.0.10",
     "rskjs-util": "^1.0.3"
