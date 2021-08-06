@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
-import { isMobile } from 'react-device-detect'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
 import usePrevious from '../../hooks/usePrevious'
 import { useWalletModalOpen, useWalletModalToggle } from '../../state/application/hooks'
@@ -12,9 +11,8 @@ import PendingView from './PendingView'
 import Option from './Option'
 import { SUPPORTED_WALLETS } from '../../constants'
 import { ExternalLink } from '../../theme'
-import MetamaskIcon from '../../assets/images/metamask.png'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { injected, fortmatic, portis } from '../../connectors'
+import { fortmatic } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 
@@ -189,6 +187,7 @@ export default function WalletModal({
       if (error instanceof UnsupportedChainIdError) {
         activate(connector) // a little janky...can't use setError because the connector isn't set
       } else {
+        console.log('error happened in activate', error)
         setPendingError(true)
       }
     })
@@ -198,9 +197,10 @@ export default function WalletModal({
   const connectWithRLogin = useCallback(() => {
     toggleWalletModal()
 
-    connectRLogin()
-      .then((connector: RLoginConnector) => {
-        tryActivation(connector)
+    return connectRLogin()
+      .then((connector: RLoginConnector | undefined) => {
+        console.log('then connector...', connector)
+        connector && tryActivation(connector)
       })
       .catch((err: Error) => {
         console.log('rLogin Error', err)
@@ -210,6 +210,13 @@ export default function WalletModal({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleWalletModal])
+
+  // show rLogin modal instead of WalletModal selection options:
+  useEffect(() => {
+    if (!account && walletModalOpen) {
+      connectWithRLogin().catch((err: any) => console.log('any error!', err))
+    }
+  }, [account, toggleWalletModal, walletModalOpen, connectWithRLogin])
 
   // close wallet modal if fortmatic modal is active
   useEffect(() => {
@@ -263,6 +270,7 @@ export default function WalletModal({
         />
       )
     }
+
     return (
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
