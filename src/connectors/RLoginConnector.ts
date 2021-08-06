@@ -1,10 +1,26 @@
 import { AbstractConnectorArguments, ConnectorUpdate } from '@web3-react/types'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import RLogin from '@rsksmart/rlogin'
+import WalletConnectProvider from '@walletconnect/web3-provider'
+
+interface RLoginReponse {
+  provider: any
+  disconnect: () => void
+}
 
 export const rLogin = new RLogin({
   cachedProvider: false,
-  providerOptions: {},
+  providerOptions: {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        rpc: {
+          30: 'https://public-node.rsk.co',
+          31: 'https://public-node.testnet.rsk.co'
+        }
+      }
+    }
+  },
   supportedChains: [30, 31]
 })
 
@@ -12,7 +28,9 @@ export class RLoginConnector extends AbstractConnector {
   private provider: any // rLogin EIP1193 provider
   private disconnect: () => void | null
 
-  constructor(rLoginResponse: { provider: any; disconnect: () => void | null }) {
+  public name: string
+
+  constructor(rLoginResponse: RLoginReponse) {
     const kwargs: AbstractConnectorArguments = {
       supportedChainIds: [30, 31]
     }
@@ -20,17 +38,15 @@ export class RLoginConnector extends AbstractConnector {
 
     this.provider = rLoginResponse.provider
     this.disconnect = rLoginResponse.disconnect
+    this.name = 'rLogin'
 
     // bind _this_ for emitEvent to be called
     this.handleAccountsChanged = this.handleAccountsChanged.bind(this)
     this.handleNetworkChanged = this.handleNetworkChanged.bind(this)
     this.handleChainChanged = this.handleChainChanged.bind(this)
+    this.close = this.close.bind(this)
 
-    this.logIt('constructor()')
-  }
-
-  private logIt(...params: any) {
-    console.log('@jesse', ...params)
+    console.log('constructor()')
   }
 
   /**
@@ -40,7 +56,7 @@ export class RLoginConnector extends AbstractConnector {
    * @returns ConnectorUpdate { provider, chainId, account }
    */
   public async activate(): Promise<ConnectorUpdate> {
-    this.logIt('activate()')
+    console.log('activate()')
 
     // get account and chainId
     const promises: [Promise<string[]>, Promise<number>] = [
@@ -58,27 +74,23 @@ export class RLoginConnector extends AbstractConnector {
     return Promise.all(promises).then((results: any[]) => ({
       provider: this.provider,
       chainId: parseInt(results[1]),
-      account: results[0][0]
+      account: results[0][0].toLowerCase()
     }))
   }
 
   public getProvider() {
-    this.logIt('getProvider()')
     return this.provider
   }
 
   public getChainId(): Promise<number> {
-    this.logIt('getChainId()')
     return this.provider.request({ method: 'eth_chainId' }).then((hex: string) => parseInt(hex))
   }
 
   public getAccount(): Promise<string> {
-    this.logIt('getAccount()')
     return this.provider.request({ method: 'eth_accounts' })
   }
 
   public deactivate() {
-    this.logIt('deactivate()')
     this.provider.removeListener('chainChanged', this.handleChainChanged)
     this.provider.removeListener('accountsChanged', this.handleAccountsChanged)
     this.provider.removeListener('close', this.close)
@@ -86,18 +98,16 @@ export class RLoginConnector extends AbstractConnector {
   }
 
   public close() {
-    this.logIt('close()')
     this.disconnect()
     this.emitDeactivate()
   }
 
   handleChainChanged(chainId: string | number) {
-    this.logIt('chainChanged()', chainId)
     this.emitUpdate({ chainId, provider: this.provider })
   }
 
   handleAccountsChanged(accounts: string[]) {
-    this.logIt('accountsChanged()', accounts)
+    console.log('accountsChanged()', accounts)
     if (accounts.length === 0) {
       this.emitDeactivate()
     } else {
@@ -106,7 +116,13 @@ export class RLoginConnector extends AbstractConnector {
   }
 
   handleNetworkChanged(networkId: string | number) {
-    this.logIt('networkChange()', networkId)
+    console.log('networkChange()', networkId)
     this.emitUpdate({ chainId: networkId, provider: this.provider })
   }
 }
+
+export const connectRLogin = () =>
+  rLogin
+    .connect()
+    .then((response: RLoginReponse) => new RLoginConnector(response))
+    .catch(console.log) // user closed modal
