@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
@@ -17,6 +17,8 @@ import { ReactComponent as Close } from '../../assets/images/x.svg'
 import { injected, fortmatic, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+
+import { connectRLogin, RLoginConnector } from '../../connectors/RLoginConnector'
 
 const CloseIcon = styled.div`
   position: absolute;
@@ -192,6 +194,23 @@ export default function WalletModal({
     })
   }
 
+  // connect with rLogin
+  const connectWithRLogin = useCallback(() => {
+    toggleWalletModal()
+
+    connectRLogin()
+      .then((connector: RLoginConnector) => {
+        tryActivation(connector)
+      })
+      .catch((err: Error) => {
+        console.log('rLogin Error', err)
+        toggleWalletModal()
+        setPendingError(true)
+      })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toggleWalletModal])
+
   // close wallet modal if fortmatic modal is active
   useEffect(() => {
     fortmatic.on(OVERLAY_READY, () => {
@@ -201,88 +220,18 @@ export default function WalletModal({
 
   // get wallets user can switch too, depending on device/browser
   function getOptions() {
-    const isMetamask = window.ethereum && window.ethereum.isMetaMask
-    return Object.keys(SUPPORTED_WALLETS).map(key => {
-      const option = SUPPORTED_WALLETS[key]
-      // check for mobile options
-      if (isMobile) {
-        //disable portis on mobile for now
-        if (option.connector === portis) {
-          return null
-        }
-
-        if (!window.web3 && !window.ethereum && option.mobile) {
-          return (
-            <Option
-              onClick={() => {
-                option.connector !== connector && !option.href && tryActivation(option.connector)
-              }}
-              id={`connect-${key}`}
-              key={key}
-              active={option.connector && option.connector === connector}
-              color={option.color}
-              link={option.href}
-              header={option.name}
-              subheader={null}
-              icon={require('../../assets/images/' + option.iconName)}
-            />
-          )
-        }
-        return null
-      }
-
-      // overwrite injected when needed
-      if (option.connector === injected) {
-        // don't show injected if there's no injected provider
-        if (!(window.web3 || window.ethereum)) {
-          if (option.name === 'MetaMask') {
-            return (
-              <Option
-                id={`connect-${key}`}
-                key={key}
-                color={'#E8831D'}
-                header={'Install Metamask'}
-                subheader={null}
-                link={'https://metamask.io/'}
-                icon={MetamaskIcon}
-              />
-            )
-          } else {
-            return null //dont want to return install twice
-          }
-        }
-        // don't return metamask if injected provider isn't metamask
-        else if (option.name === 'MetaMask' && !isMetamask) {
-          return null
-        }
-        // likewise for generic
-        else if (option.name === 'Injected' && isMetamask) {
-          return null
-        }
-      }
-
-      // return rest of options
-      return (
-        !isMobile &&
-        !option.mobileOnly && (
-          <Option
-            id={`connect-${key}`}
-            onClick={() => {
-              option.connector === connector
-                ? setWalletView(WALLET_VIEWS.ACCOUNT)
-                : !option.href && tryActivation(option.connector)
-            }}
-            key={key}
-            active={option.connector === connector}
-            color={option.color}
-            link={option.href}
-            header={option.name}
-            subheader={null} //use option.descriptio to bring back multi-line
-            icon={require('../../assets/images/' + option.iconName)}
-          />
-        )
-      )
-    })
+    return (
+      <Option
+        onClick={connectWithRLogin}
+        id="connect-rLogin"
+        key="rlogin"
+        header="Connect with rLogin"
+        color="#ff3300"
+        subheader="Connect with rLogin"
+        icon="hehe.jpg"
+        active={false}
+      />
+    )
   }
 
   function getModalContent() {
@@ -310,7 +259,7 @@ export default function WalletModal({
           pendingTransactions={pendingTransactions}
           confirmedTransactions={confirmedTransactions}
           ENSName={ENSName}
-          openOptions={() => setWalletView(WALLET_VIEWS.OPTIONS)}
+          openOptions={() => connectWithRLogin()}
         />
       )
     }
