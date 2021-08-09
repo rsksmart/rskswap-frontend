@@ -45,8 +45,6 @@ export class RLoginConnector extends AbstractConnector {
     this.handleNetworkChanged = this.handleNetworkChanged.bind(this)
     this.handleChainChanged = this.handleChainChanged.bind(this)
     this.close = this.close.bind(this)
-
-    console.log('constructor()')
   }
 
   /**
@@ -56,8 +54,6 @@ export class RLoginConnector extends AbstractConnector {
    * @returns ConnectorUpdate { provider, chainId, account }
    */
   public async activate(): Promise<ConnectorUpdate> {
-    console.log('activate()')
-
     // get account and chainId
     const promises: [Promise<string[]>, Promise<number>] = [
       this.provider.request({ method: 'eth_accounts' }),
@@ -107,7 +103,6 @@ export class RLoginConnector extends AbstractConnector {
   }
 
   handleAccountsChanged(accounts: string[]) {
-    console.log('accountsChanged()', accounts)
     if (accounts.length === 0) {
       this.emitDeactivate()
     } else {
@@ -116,7 +111,6 @@ export class RLoginConnector extends AbstractConnector {
   }
 
   handleNetworkChanged(networkId: string | number) {
-    console.log('networkChange()', networkId)
     this.emitUpdate({ chainId: networkId, provider: this.provider })
   }
 }
@@ -125,4 +119,4 @@ export const connectRLogin = () =>
   rLogin
     .connect()
     .then((response: RLoginReponse) => new RLoginConnector(response))
-    .catch(console.log) // user closed modal
+    .catch(console.log) // user closed modal is the only reason this is called

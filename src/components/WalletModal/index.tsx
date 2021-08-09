@@ -8,7 +8,6 @@ import { useWalletModalOpen, useWalletModalToggle } from '../../state/applicatio
 import Modal from '../Modal'
 import AccountDetails from '../AccountDetails'
 import PendingView from './PendingView'
-import Option from './Option'
 import { SUPPORTED_WALLETS } from '../../constants'
 import { ExternalLink } from '../../theme'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
@@ -89,15 +88,6 @@ const Blurb = styled.div`
   ${({ theme }) => theme.mediaWidth.upToMedium`
     margin: 1rem;
     font-size: 12px;
-  `};
-`
-
-const OptionGrid = styled.div`
-  display: grid;
-  grid-gap: 10px;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
   `};
 `
 
@@ -187,7 +177,6 @@ export default function WalletModal({
       if (error instanceof UnsupportedChainIdError) {
         activate(connector) // a little janky...can't use setError because the connector isn't set
       } else {
-        console.log('error happened in activate', error)
         setPendingError(true)
       }
     })
@@ -198,12 +187,8 @@ export default function WalletModal({
     toggleWalletModal()
 
     return connectRLogin()
-      .then((connector: RLoginConnector | undefined) => {
-        console.log('then connector...', connector)
-        connector && tryActivation(connector)
-      })
-      .catch((err: Error) => {
-        console.log('rLogin Error', err)
+      .then((connector: RLoginConnector | undefined) => connector && tryActivation(connector))
+      .catch(() => {
         toggleWalletModal()
         setPendingError(true)
       })
@@ -214,7 +199,7 @@ export default function WalletModal({
   // show rLogin modal instead of WalletModal selection options:
   useEffect(() => {
     if (!account && walletModalOpen) {
-      connectWithRLogin().catch((err: any) => console.log('any error!', err))
+      connectWithRLogin()
     }
   }, [account, toggleWalletModal, walletModalOpen, connectWithRLogin])
 
@@ -224,22 +209,6 @@ export default function WalletModal({
       toggleWalletModal()
     })
   }, [toggleWalletModal])
-
-  // get wallets user can switch too, depending on device/browser
-  function getOptions() {
-    return (
-      <Option
-        onClick={connectWithRLogin}
-        id="connect-rLogin"
-        key="rlogin"
-        header="Connect with rLogin"
-        color="#ff3300"
-        subheader="Connect with rLogin"
-        icon="hehe.jpg"
-        active={false}
-      />
-    )
-  }
 
   function getModalContent() {
     if (error) {
@@ -293,15 +262,13 @@ export default function WalletModal({
           </HeaderRow>
         )}
         <ContentWrapper>
-          {walletView === WALLET_VIEWS.PENDING ? (
+          {walletView === WALLET_VIEWS.PENDING && (
             <PendingView
               connector={pendingWallet}
               error={pendingError}
               setPendingError={setPendingError}
               tryActivation={tryActivation}
             />
-          ) : (
-            <OptionGrid>{getOptions()}</OptionGrid>
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
