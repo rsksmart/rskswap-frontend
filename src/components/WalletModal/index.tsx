@@ -15,7 +15,7 @@ import { fortmatic } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 
-import { connectRLogin, RLoginConnector } from '../../connectors/RLoginConnector'
+import { connectRLogin } from '../../connectors/RLoginConnector'
 
 const CloseIcon = styled.div`
   position: absolute;
@@ -187,7 +187,7 @@ export default function WalletModal({
     toggleWalletModal()
 
     return connectRLogin()
-      .then((connector: RLoginConnector | undefined) => connector && tryActivation(connector))
+      .then((connector: any) => connector && tryActivation(connector))
       .catch(() => {
         toggleWalletModal()
         setPendingError(true)
