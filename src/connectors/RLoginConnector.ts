@@ -1,5 +1,5 @@
 import RLogin from '@rsksmart/rlogin'
-import Web3ReactProvider from '@rsksmart/rlogin-web3react-provider'
+import { Web3ReactProvider } from '@rsksmart/rlogin-web3react-provider'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 
 interface RLoginReponse {
