@@ -2371,15 +2371,15 @@
     redux-thunk "^2.3.0"
     reselect "^4.0.0"
 
-"@rsksmart/rsk-contract-metadata@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@rsksmart/rsk-contract-metadata/-/rsk-contract-metadata-1.0.13.tgz#15061f2cc2be15043b00db432563f2b412cfbd9f"
-  integrity sha512-ih1SU0HjZZ/TFeY74/jXsBCbyra3KOnfDjqTsXHgImJatohlisMLH+zs0tU4yeH9jDWbG22JBPrXxo4+jK/ueA==
+"@rsksmart/rsk-contract-metadata@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@rsksmart/rsk-contract-metadata/-/rsk-contract-metadata-1.0.14.tgz#e424cb3a3dd18295a72d8f799073fddefd7f8ff3"
+  integrity sha512-D0SaEnpNl4jmlp3M+lDSl1yUbv8gMq1CRjmhIRzM1j22sODEj/gDpVcPNtYlZAAGq+P+1RhEoX1RB5+Blm/GeA==
 
-"@rsksmart/rsk-testnet-contract-metadata@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@rsksmart/rsk-testnet-contract-metadata/-/rsk-testnet-contract-metadata-1.0.10.tgz#eaaed277c8a5887d4eb1553af3f1e39f95b8da57"
-  integrity sha512-e6tfawI02/N5zEtcVqqt+/6Pce3b0dwTrx57DADvaRzTFLBoMa0042D4Z8W5yKXvNK5t2Z68/nZ6/lZWEf40sA==
+"@rsksmart/rsk-testnet-contract-metadata@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@rsksmart/rsk-testnet-contract-metadata/-/rsk-testnet-contract-metadata-1.0.11.tgz#625923c57c4701177a9040e6f896856e8757d373"
+  integrity sha512-maQCHIpKOvzGad53VQk5agbIEv2xkhiKayHocjuWXjhjYyFG6zyyXkjglFNbHGVjJm7NAVgBd4lqA9cHFHoL0w==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
