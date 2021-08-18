@@ -1,6 +1,7 @@
 import RLogin from '@rsksmart/rlogin'
 import { Web3ReactProvider } from '@rsksmart/rlogin-web3-react-connector'
 import WalletConnectProvider from '@walletconnect/web3-provider'
+import Portis from '@portis/web3'
 
 interface RLoginReponse {
   provider: any
@@ -18,6 +19,16 @@ export const rLogin = new RLogin({
           31: 'https://public-node.testnet.rsk.co'
         }
       }
+    },
+    portis: {
+      package: Portis,
+      options: {
+        id: '7ea0e47e-ff3c-4fc7-85cb-7b336d0569ed',
+        network: {
+          nodeUrl: process.env.REACT_APP_NETWORK_URL,
+          chainId: Number(process.env.REACT_APP_CHAIN_ID),
+        },
+      },
     }
   },
   supportedChains: [30, 31]

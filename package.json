@@ -108,6 +108,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@portis/web3": "^4.0.5",
     "@rsksmart/rlogin": "^1.1.0",
     "@rsksmart/rlogin-web3-react-connector": "^1.0.1",
     "@rsksmart/rsk-contract-metadata": "^1.0.14",
