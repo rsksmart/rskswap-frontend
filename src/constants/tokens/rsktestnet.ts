@@ -23,5 +23,6 @@ export default [
     'rUBI',
     'Universal Basic Income Token'
   ),
-  new Token(ChainId.RSK_TESTNET, '0xe355c280131dfaf18bf1c3648aee3c396db6b5fd', 4, 'BRZ', 'Brazilian Digital Token')
+  new Token(ChainId.RSK_TESTNET, '0xe355c280131dfaf18bf1c3648aee3c396db6b5fd', 4, 'BRZ', 'Brazilian Digital Token'),
+  new Token(ChainId.RSK_TESTNET, '0x74858fe37d391f81f89472e1d8bc8ef9cf67b3b1', 18, 'XUSD', 'XUSD Babelfish stablecoin')
 ]
